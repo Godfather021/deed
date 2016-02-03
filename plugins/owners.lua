@@ -112,7 +112,7 @@ local function set_description(target, about)
 end
 
 local function run(msg, matches)
-  if msg.to.type ~= 'chat' then
+  if msg.to.type ~= 'chat' or msg.to.type == 'channel' then
     local chat_id = matches[1]
     local receiver = get_receiver(msg)
     local data = load_data(_config.moderation.data)
