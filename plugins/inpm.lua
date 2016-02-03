@@ -60,16 +60,16 @@ local function run(msg, matches)
          	return "Chat not found."
         end
      if matches[1] == 'chats'then
-       if is_admin(msg) and msg.to.type == 'chat' then
+       if is_admin(msg) and msg.to.type == 'chat' or msg.to.type == 'channel' then
          return chat_list(msg)
-       elseif msg.to.type ~= 'chat' then
+       elseif msg.to.type ~= 'chat' or msg.to.type == 'channel' then
          return chat_list(msg)
        end      
      end
      if matches[1] == 'chatlist'then
-       if is_admin(msg) and msg.to.type == 'chat' then
+       if is_admin(msg) and msg.to.type == 'chat' or msg.to.type == 'channel' then
          send_document("chat#id"..msg.from.id, "./groups/lists/listed_groups.txt", ok_cb, false)
-       elseif msg.to.type ~= 'chat' then
+       elseif msg.to.type ~= 'chat' or msg.to.type == 'channel' then
          send_document("user#id"..msg.from.id, "./groups/lists/listed_groups.txt", ok_cb, false) 
        end      
      end
