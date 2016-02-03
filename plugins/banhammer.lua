@@ -59,7 +59,7 @@ local function pre_process(msg)
   return msg
   end
   -- banned user is talking !
-  if msg.to.type == 'chat' then
+  if msg.to.type == 'chat' or msg.to.type == 'channel' then
     local data = load_data(_config.moderation.data)
     local group = msg.to.id
     local texttext = 'groups'
@@ -136,7 +136,7 @@ local function run(msg, matches)
   end
   if matches[1]:lower() == 'kickme' then-- /kickme
   local receiver = get_receiver(msg)
-    if msg.to.type == 'chat' then
+    if msg.to.type == 'chat' or msg.to.type == 'channel' then
       local name = user_print_name(msg.from)
       savelog(msg.to.id, name.." ["..msg.from.id.."] left using kickme ")-- Save to logs
       chat_del_user("chat#id"..msg.to.id, "user#id"..msg.from.id, ok_cb, false)
