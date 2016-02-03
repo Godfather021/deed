@@ -1,5 +1,5 @@
 local function get_variables_hash(msg)
-  if msg.to.type == 'chat' then
+  if msg.to.type == 'chat' or msg.to.type == 'channel' then
     return 'chat:'..msg.to.id..':variables'
   end
 end 
