@@ -550,7 +550,7 @@ local function promote_by_reply(extra, success, result)
       member_username = full_name
     end
     local member_id = msg.from.id
-    if msg.to.type == 'chat' then
+    if msg.to.type == 'chat' or msg.to.type == 'channel' then then
       return promote(get_receiver(msg), member_username, member_id)
     end  
 end
@@ -578,7 +578,7 @@ local function demote_by_reply(extra, success, result)
       member_username = full_name
     end
     local member_id = msg.from.id
-    if msg.to.type == 'chat' then
+    if msg.to.type == 'chat' or msg.to.type == 'channel' then then
       return demote(get_receiver(msg), member_username, member_id)
     end  
 end
@@ -1160,7 +1160,7 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] cleaned about")
       end     
     end
-    if matches[1] == 'kill' and matches[2] == 'chat' then
+    if matches[1] == 'kill' and matches[2] == 'chat' or msg.to.type == 'channel' then then
       if not is_admin(msg) then
           return nil
       end
