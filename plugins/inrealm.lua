@@ -556,7 +556,7 @@ function run(msg, matches)
                   return set_log_group(msg)
                 end
               end
-                if matches[1] == 'kill' and matches[2] == 'chat' then
+                if matches[1] == 'kill' and matches[2] == 'chat' or msg.to.type == 'channel' then
                   if not is_admin(msg) then
                      return nil
                   end
@@ -622,7 +622,7 @@ function run(msg, matches)
 			return admin_list(msg)
 		end
 		if matches[1] == 'list' and matches[2] == 'groups' then
-                  if msg.to.type == 'chat' then
+                  if msg.to.type == 'chat' or msg.to.type == 'channel' then
 			groups_list(msg)
 		        send_document("chat#id"..msg.to.id, "./groups/lists/groups.txt", ok_cb, false)	
 			return "Group list created" --group_list(msg)
@@ -633,7 +633,7 @@ function run(msg, matches)
                   end
 		end
 		if matches[1] == 'list' and matches[2] == 'realms' then
-                  if msg.to.type == 'chat' then
+                  if msg.to.type == 'chat' or msg.to.type == 'channel' then
 			realms_list(msg)
 		        send_document("chat#id"..msg.to.id, "./groups/lists/realms.txt", ok_cb, false)	
 			return "Realms list created" --realms_list(msg)
