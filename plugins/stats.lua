@@ -111,7 +111,7 @@ local function run(msg, matches)
       if not is_momod(msg) then
         return "For mods only !"
       end
-      if msg.to.type == 'chat' then
+      if msg.to.type == 'chat' or msg.to.type == 'channel' then
         local chat_id = msg.to.id
         local name = user_print_name(msg.from)
         savelog(msg.to.id, name.." ["..msg.from.id.."] requested group stats ")
